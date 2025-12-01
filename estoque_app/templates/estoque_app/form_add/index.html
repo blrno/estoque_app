@@ -3,15 +3,18 @@
 <head>
  <meta charset="UTF-8">
  <title>Formulário de produto</title>
- <style>
- body { font-family: Arial, sans-serif; margin: 40px; }
- form { display: flex; flex-direction: column; max-width: 400px; }
- input, button { padding: 10px; margin-bottom: 10px; font-size: 1em; }
- button { background-color: #28a745; color: white; border: none; cursor: pointer; }
- </style>
+{% load static %} <link rel="stylesheet" href="{% static 'estoque_app/add.css' %}">
 </head>
 <body>
- <h1>Adicionar Novo Produto</h1>
+<div class="form">
+<h1 class="title">
+  <span class="bar"></span>
+  Adicionar
+</h1>
+<div class="subtitle-block">
+<p class="subtitle">Produto</p>
+<p class="discription">Digite os dados do novo usuário</p>
+</div>
  <form method="POST">
  {% csrf_token %} 
 <label for="nome">Nome</label>
@@ -27,5 +30,6 @@
  </form>
  <br>
  <a href="{% url 'estoque:lista' %}">Cancelar e voltar para a lista</a>
+</div>
 </body>
 </html>
