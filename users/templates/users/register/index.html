@@ -1,35 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
- <meta charset="UTF-8">
- <title>Login</title>
-{% load static %} <link rel="stylesheet" href="{% static 'users/login.css' %}">
-</head>
-<body>
-<div class="form">
-<h1 class="title">
-  <span class="bar"></span>
-  Estoque Admin
-</h1>
-<div class="subtitle-block">
-<p class="subtitle">SIGN UP</p>
-<p class="discription">Digite os dados do novo usuário</p>
-</div>
-<form method="post">
-    {% csrf_token %}
-{%for field in form%}
-<div class="fields">
-    <label>{{field.label}}</label>
-    {{field}}
-    {% if field.errors %}
-        <div style="color: red;">
-            {{ field.errors }}
+    <head>
+        <meta charset="UTF-8">
+        <title>Login</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'users/login.css' %}">
+    </head>
+    <body>
+        <div class="form">
+            <h1 class="title">
+                <span class="bar"></span>
+                Estoque Admin
+            </h1>
+            <div class="subtitle-block">
+                <p class="subtitle">SIGN UP</p>
+                <p class="discription">Digite os dados do novo usuário</p>
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="fields">
+                        <label>{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}<div style="color: red;">{{ field.errors }}</div>{% endif %}
+                    </div>
+                {% endfor %}
+                <button type="submit">Registar</button>
+            </form>
         </div>
-    {% endif %}
-</div>
-{%endfor%}
-    <button type="submit">Registar</button>
-</form>
-</div
-</body>
+    </body>
 </html>
