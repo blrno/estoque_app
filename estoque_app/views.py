@@ -66,5 +66,7 @@ class Excluir(View):
 
     def post(self, request, pk):
         produto = Produto.objects.get(id=pk)
+        if produto.imagem:
+            produto.imagem.delete(save=False)
         produto.delete()
         return redirect("estoque:lista")
