@@ -52,7 +52,10 @@
                         <td class="actions">
                             {% if user.is_authenticated %}
                                 <a href="{% url 'estoque:editar' produto.id %}">Editar</a>
-                                <a href="{% url 'estoque:excluir' produto.id %}">Excluir</a>
+                                <a href="#"
+                                   onclick="openDeleteModal('{{ produto.id }}', '{{ produto.nome }}'); return false;">
+                                    Excluir
+                                </a>
                             {% else %}
                                 <p>Login para habilitar ações</p>
                             {% endif %}
@@ -65,5 +68,37 @@
                 {% endfor %}
             </tbody>
         </table>
+        {% if user.is_authenticated %}
+            <div id="deleteModal" class="modal" style="display:none;">
+                <div class="modal-content">
+                    <h2>Atenção!</h2>
+                    <p>
+                        Você tem certeza que deseja excluir <strong id="modalProdutoNome"></strong>?
+                    </p>
+                    <p>Esta ação não pode ser desfeita.</p>
+                    <form id="modalForm" method="POST">
+                        {% csrf_token %}
+                        <button class="del-btn" type="submit">Sim, excluir permanentemente</button>
+                        <button type="button" onclick="closeModal()">Cancelar</button>
+                    </form>
+                </div>
+            </div>
+        {% endif %}
+        <script>
+    function openDeleteModal(produtoId, produtoNome) {
+        // Update product name inside modal
+        document.getElementById('modalProdutoNome').textContent = produtoNome;
+
+        // Update delete URL in the form
+        const form = document.getElementById('modalForm');
+        form.action = `/excluir/${produtoId}/`;
+        // Show modal
+        document.getElementById('deleteModal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('deleteModal').style.display = 'none';
+    }
+        </script>
     </body>
 </html>
