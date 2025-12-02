@@ -16,7 +16,7 @@
                     <p class="discription">Edite os dados do produto</p>
                 </div>
             </div>
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="fields">
                     <label for="nome">Nome:</label>
@@ -45,6 +45,17 @@
                            name="quantidade"
                            value="{{ produto.quantidade }}"
                            required>
+                </div>
+                <div class="fields">
+                    <label for="imagem">Imagem:</label>
+                    <input type="file" id="imagem" name="imagem" accept="image/*">
+                    {% if produto.imagem %}
+                        <br>
+                        <img src="{{ produto.imagem.url }}"
+                             alt="{{ produto.nome }}"
+                             style="max-width:80px;
+                                    max-height:80px">
+                    {% endif %}
                 </div>
                 <br>
                 <button type="submit">Salvar Alterações</button>

@@ -20,16 +20,18 @@ def lista(request):
 @login_required
 def adicionar(request):
     if request.method == "POST":
-        # pega os dados do formulario
         nome = request.POST.get("nome")
         marca = request.POST.get("marca")
         valor = request.POST.get("valor")
         quantidade = request.POST.get("quantidade")
-        # Cria um novo objeto Carro e salva no banco
+        imagem = request.FILES.get("imagem")
         Produto.objects.create(
-            nome=nome, marca=marca, valor=valor, quantidade=quantidade
+            nome=nome,
+            marca=marca,
+            valor=valor,
+            quantidade=quantidade,
+            imagem=imagem,
         )
-        # Redireciona para a lista de carros apos salvar
         return redirect("estoque:lista")
     return render(request, "estoque_app/form_add/index.html")
 
@@ -40,11 +42,15 @@ def editar(request, pk):
     produto = Produto.objects.get(id=pk)
 
     if request.method == "POST":
-        # Atualiza os campos do objeto 'carro' com os dados do formulario
         produto.nome = request.POST.get("nome")
         produto.marca = request.POST.get("marca")
         produto.valor = request.POST.get("valor")
         produto.quantidade = request.POST.get("quantidade")
+        imagem = request.FILES.get("imagem")
+        if imagem:
+            if produto.imagem:
+                produto.imagem.delete(save=False)
+            produto.imagem = imagem
         produto.save()  ##salva alteracoes
         return redirect("estoque:lista")
 

@@ -20,7 +20,7 @@
                     <p class="discription">Digite os dados do novo produto</p>
                 </div>
             </div>
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="fields">
                     <label for="nome">Nome</label>
@@ -37,6 +37,10 @@
                 <div class="fields">
                     <label for="quantidade">Quantidade</label>
                     <input type="quantidade" id="quantidade" name="quantidade" required>
+                </div>
+                <div class="fields">
+                    <label for="imagem">Imagem</label>
+                    <input type="file" id="imagem" name="imagem" accept="image/*">
                 </div>
                 <button type="submit">Salvar</button>
             </form>

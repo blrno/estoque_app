@@ -7,6 +7,7 @@ class Produto(models.Model):
     marca = models.CharField(max_length=10, unique=True)
     valor = models.FloatField()
     quantidade = models.IntegerField()
+    imagem = models.ImageField(upload_to="produtos/", blank=True, null=True)
 
     def __str__(self):
         # Isso ajuda a mostrar uma informação legível no painel de administração
