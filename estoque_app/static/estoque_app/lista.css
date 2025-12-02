@@ -1,32 +1,60 @@
 body {
   font-family: Arial, sans-serif;
   margin: 40px;
+  background-color: #f8f8f8;
+}
+
+.main-title {
+  background-color: white;
+  padding-block: 3px;
+  margin-bottom: 15px;
 }
 
 table {
   width: 100%;
-  border-collapse: collapse;
+  /* border-collapse: collapse; */
+  border-collapse: separate;
+  border-spacing: 0 12px;
+  /* horizontal | vertical spacing */
+}
+
+thead th {
+  border: none;
+  color: slategray;
 }
 
 th,
 td {
   border: 1px solid #ccc;
   padding: 10px;
-  text-align: left;
+  text-align: center;
 }
 
-th {
-  background-color: #f2f2f2;
+td.actions {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+tbody td {
+  padding-block: 30px;
+  background-color: white;
+  border: none;
+}
+
+hr {
+  color: slategray;
+  opacity: .2;
+  height: 1px;
+  background-color: slategray;
 }
 
 .btn {
   display: inline-block;
   padding: 10px 15px;
-  background-color: #007BFF;
   color: white;
   text-decoration: none;
   border-radius: 5px;
-  margin-bottom: 20px;
 }
 
 .actions a {
@@ -36,6 +64,7 @@ th {
 .btn-box {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .btn-box * button {
@@ -44,7 +73,6 @@ th {
   color: white;
   text-decoration: none;
   border-radius: 5px;
-  margin-bottom: 20px;
 }
 
 .modal {
