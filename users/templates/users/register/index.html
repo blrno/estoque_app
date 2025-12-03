@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
-        <title>Login</title>
-        {% load static %}
-        <link rel="stylesheet" href="{% static 'users/login.css' %}">
+        <title>Cadastro</title>
+        <link rel="stylesheet" href="{% static 'users/register/css/styles.css' %}">
+        <link rel="stylesheet" href="{% static 'users/register/css/modal.css' %}">
     </head>
     <body>
         <div class="form">
@@ -28,5 +29,9 @@
                 <button type="submit">Registar</button>
             </form>
         </div>
+        {% if registered %}
+            {% include 'users/register/modal.html' %}
+            <script src="{% static 'users/register/js/script.js' %}"></script>
+        {% endif %}
     </body>
 </html>

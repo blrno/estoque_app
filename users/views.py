@@ -20,10 +20,11 @@ class Logout(LogoutView):
 class Register(LoginRequiredMixin, UserPassesTestMixin, FormView):
     template_name = "users/register/index.html" # Template do formulário de cadastro
     form_class = RegisterUserForm               # Formulário de criação de usuário
-    success_url = "/users/login/"               # Redirecionamento após cadastro
+    # when sucess it is not to redirect
 
-    login_url = "/admin/login/"                 # Página de login caso acesse sem permissão
-    redirect_field_name = None                  # Remove parâmetro ?next=
+    # success_url = "/users/login/"               # Redirecionamento após cadastro
+    # login_url = "/admin/login/"                 # Página de login caso acesse sem permissão
+    # redirect_field_name = None                  # Remove parâmetro ?next=
 
     def test_func(self):
         # Permite acesso somente se o usuário logado for superusuário
@@ -37,7 +38,9 @@ class Register(LoginRequiredMixin, UserPassesTestMixin, FormView):
         # Salva o usuário e processa o formulário se tudo estiver correto
         user = form.save()
         if user:
-            return super().form_valid(form)
-        else:
-            # Retorna erro caso o formulário não seja válido
-            return self.form_invalid(form)
+            # Re-render same page and send flag to open modal
+            context = self.get_context_data(form=self.form_class())
+            context["registered"] = True
+            return self.render_to_response(context)
+
+        return self.form_invalid(form)

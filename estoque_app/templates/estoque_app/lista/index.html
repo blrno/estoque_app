@@ -1,11 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
         <title>Produtos</title>
-        {% load static %}
         <!-- Carrega o arquivo de estilos CSS para a lista de produtos -->
-        <link rel="stylesheet" href="{% static 'estoque_app/lista.css' %}">
+        <link rel="stylesheet"
+              href="{% static 'estoque_app/lista/css/styles.css' %}">
+        <link rel="stylesheet"
+              href="{% static 'estoque_app/lista/css/modal.css' %}">
     </head>
     <body>
         <div class = "main-title">
@@ -78,13 +81,11 @@
                         {% if user.is_authenticated %}
                             <!-- Botão para editar produto -->
                             <a href="{% url 'estoque:editar' produto.id %}">
-                                {% load static %}
                                 <img src="{% static 'estoque_app/img/pen.svg' %}">
                             </a>
                             <!-- Botão para excluir produto (abre modal de confirmação) -->
                             <a href="#"
                                onclick="openDeleteModal('{{ produto.id }}', '{{ produto.nome }}'); return false;">
-                                {% load static %}
                                 <img src="{% static 'estoque_app/img/trash.svg' %}">
                             </a>
                         {% else %}
@@ -102,39 +103,8 @@
         </tbody>
     </table>
     {% if user.is_authenticated %}
-        <!-- Modal de confirmação para exclusão de produto -->
-        <div id="deleteModal" class="modal" style="display:none;">
-            <div class="modal-content">
-                <h2>Atenção!</h2>
-                <p>
-                    Você tem certeza que deseja excluir <strong id="modalProdutoNome"></strong>?
-                </p>
-                <p>Esta ação não pode ser desfeita.</p>
-                <form id="modalForm" method="POST">
-                    {% csrf_token %}
-                    <button class="del-btn" type="submit">Sim, excluir permanentemente</button>
-                    <button type="button" onclick="closeModal()">Cancelar</button>
-                </form>
-            </div>
-        </div>
+        {% include 'estoque_app/lista/modal.html' %}
     {% endif %}
-    <script>
-    // Função para abrir o modal de exclusão e preencher os dados do produto
-    function openDeleteModal(produtoId, produtoNome) {
-        // Atualiza o nome do produto no modal
-        document.getElementById('modalProdutoNome').textContent = produtoNome;
-
-        // Atualiza a URL de exclusão no formulário
-        const form = document.getElementById('modalForm');
-        form.action = `/excluir/${produtoId}/`;
-        // Exibe o modal
-        document.getElementById('deleteModal').style.display = 'block';
-    }
-
-    // Função para fechar o modal de exclusão
-    function closeModal() {
-        document.getElementById('deleteModal').style.display = 'none';
-    }
-    </script>
+    <script src="{% static 'estoque_app/lista/js/script.js' %}"></script>
 </body>
 </html>
