@@ -20,42 +20,22 @@ Siga o passo a passo abaixo para clonar e executar o projeto localmente:
    cd <nome_da_pasta_do_projeto>
    ```
 
-2. **Crie um ambiente virtual Python na raiz do projeto:**
+2. * Rode o script de build da aplicação para automaticamente:
+- - Criar um ambiente virtual Python na raiz do projeto:**
+- - Ativar o ambiente virtual:**
+- - Instalar as dependências:**
+- - Realizar as migrações para criar o banco de dados:**
+- - Criar um superusuário para acessar o painel administrativo:(esteja atento para interagir com o terminal nessa tarefa)**
+- - Execute o servidor de desenvolvimento:**
    ```bash
-   python3 -m venv venv
+  pyhton setup.py
    ```
 
-3. **Ative o ambiente virtual:**
-   ```bash
-   source venv/bin/activate
-   ```
 
-4. **Instale as dependências:**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-5. **Realize as migrações para criar o banco de dados:**
-   ```bash
-   python manage.py migrate
-   ```
-
-6. **Crie um superusuário para acessar o painel administrativo:**
-   ```bash
-   python manage.py createsuperuser
-   ```
-
-7. **Execute o servidor de desenvolvimento:**
-   ```bash
-   python manage.py runserver
-   ```
-
-8. **Acesse a aplicação:**
+3. **Acesse a aplicação:**
    - Abra o navegador e acesse a URL fornecida pelo Django (geralmente http://127.0.0.1:8000/).
 
 ## Observações
-
-- Para upload de imagens, certifique-se de que o diretório `media/` está criado e configurado nas configurações do Django.
 - O acesso às funcionalidades é restrito a usuários autenticados.
 - O painel administrativo do Django pode ser acessado em `/admin` para gerenciamento avançado.
 
