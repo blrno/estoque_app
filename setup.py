@@ -32,4 +32,4 @@ run(f'"{python_exec}" manage.py migrate')
 run(f'"{python_exec}" manage.py createsuperuser')
 
 # Run server
-run(f'"{python_exec}" manage.py runserver )
+run(f'"{python_exec}" manage.py runserver')
