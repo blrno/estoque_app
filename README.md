@@ -10,7 +10,7 @@ Este aplicativo foi desenvolvido para atender a necessidade de gerentes e estoqu
 - **Remover produtos:** Exclua produtos descontinuados do estoque.
 - **Acesso seguro:** Apenas usuários autenticados podem acessar e modificar o estoque.
 
-## Como rodar o aplicativo
+# Como rodar o aplicativo
 
 Siga o passo a passo abaixo para clonar e executar o projeto localmente:
 
@@ -32,12 +32,11 @@ Siga o passo a passo abaixo para clonar e executar o projeto localmente:
 
 4. **Instale as dependências:**
    ```bash
-   pip install django
+   pip install -r requirements.txt
    ```
 
 5. **Realize as migrações para criar o banco de dados:**
    ```bash
-   python manage.py makemigrations
    python manage.py migrate
    ```
 
