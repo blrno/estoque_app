@@ -21,12 +21,12 @@ Siga o passo a passo abaixo para clonar e executar o projeto localmente:
    ```
 
 2. **Rode o script de build da aplicação para automaticamente:**
-  - Criar um ambiente virtual Python na raiz do projeto:
-  - Ativar o ambiente virtual:
-  - Instalar as dependências:
-  - Realizar as migrações para criar o banco de dados:
-  - Criar um superusuário para acessar o painel administrativo:(esteja atento para interagir com o terminal nessa tarefa)
-  - Executar o servidor de desenvolvimento:
+    - Criar um ambiente virtual Python na raiz do projeto:
+    - Ativar o ambiente virtual:
+    - Instalar as dependências:
+    - Realizar as migrações para criar o banco de dados:
+    - Criar um superusuário para acessar o painel administrativo:(esteja atento para interagir com o terminal nessa tarefa)
+    - Executar o servidor de desenvolvimento:
    ```bash
   pyhton setup.py
    ```
