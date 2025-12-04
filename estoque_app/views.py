@@ -57,6 +57,9 @@ class Editar(View):
         if valor:
             valor = float(valor.replace(",", "."))
             produto.valor = valor
+        quantidade = request.POST.get("quantidade")
+        if quantidade:
+            produto.quantidade = quantidade   # <-- NECESSARY
         imagem = request.FILES.get("imagem")
         if imagem:
             # Remove a imagem antiga antes de salvar a nova
