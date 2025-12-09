@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <title></title>
+        <!-- Carrega o arquivo de estilos CSS -->
+        <link rel="stylesheet" href="{% static 'estoque_app/panel/css/styles.css' %}" {% block extra_css %}{% endblock %}
+        </head>
+        <body>
+            <h1>PAINEL</h1>
+            <div class="card-box">
+                <div class="card">
+                    <img src="{% static 'estoque_app/panel/img/userblue.svg' %}"
+                         alt="Seta para direita">
+                    <p>Usuários</p>
+                    <p>{{ user_count }}</p>
+                </div>
+                <div class="card">
+                    <img src="{% static 'estoque_app/panel/img/boxblue.svg' %}"
+                         alt="Seta para direita">
+                    <p>produtos</p>
+                    <p>{{ produto_count }}</p>
+                </div>
+            </div>
+            {% include "include/base_nav.html" %}
+        </body>
+    </html>

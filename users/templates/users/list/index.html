@@ -41,10 +41,12 @@
                 <td>{{ u.username }}</td>
                 <td>{{ u.id }}</td>
                 <td class="actions">
-                    <a href="#"
-                       onclick="openDeleteModal('{{ u.id }}', '{{ u.username }}'); return false;">
-                        <img src="{% static 'base_list/img/trash.svg' %}">
-                    </a>
+                    {% if not u.is_superuser %}
+                        <a href="#"
+                           onclick="openDeleteModal('{{ u.id }}', '{{ u.username }}'); return false;">
+                            <img src="{% static 'base_list/img/trash.svg' %}">
+                        </a>
+                    {% endif %}
                     <a href="{% url 'users:edit' u.id %}">
                         <img src="{% static 'base_list/img/pen.svg' %}">
                     </a>

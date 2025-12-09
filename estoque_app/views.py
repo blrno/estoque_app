@@ -3,7 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views import View
 from .models import Produto
-
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 @method_decorator(login_required, name="dispatch")
 class Lista(View):
@@ -11,6 +12,15 @@ class Lista(View):
         produtos = Produto.objects.all().order_by("marca")
         return render(request, "estoque_app/lista/index.html", {"produtos": produtos})
 
+
+@method_decorator(login_required, name="dispatch")
+class Panel(View):
+    def get(self, request):
+        context = {
+            "user_count": User.objects.count(),
+            "produto_count": Produto.objects.count(),
+        }
+        return render(request, "estoque_app/panel/index.html", context)
 
 @method_decorator(login_required, name="dispatch")
 class Adicionar(View):
